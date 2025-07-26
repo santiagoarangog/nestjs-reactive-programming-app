@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { CacheModule } from '@nestjs/cache-manager';
-import { ConfigModule, ConfigService } from '@nestjs/config'; // 👈 Importar
-// ...otros imports
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HealthRepositoryPort } from './application/ports/health.repository.port';
 import { CheckHealthUseCase } from './application/use-cases/check-health.use-case';
-import { HealthController } from './infrastructure/driving-adapters/http/health.controller';
 import { HealthRepository } from './infrastructure/driven-adapters/typeorm-redis/health.repository';
+import { HealthV1Controller } from './infrastructure/driving-adapters/http/v1/health.v1.controller';
+import { HealthV2Controller } from './infrastructure/driving-adapters/http/v2/health.v2.controller';
 
 @Module({
     imports: [
@@ -18,7 +18,7 @@ import { HealthRepository } from './infrastructure/driven-adapters/typeorm-redis
             }),
         }),
     ],
-    controllers: [HealthController],
+    controllers: [HealthV1Controller, HealthV2Controller],
     providers: [
         CheckHealthUseCase,
         {
