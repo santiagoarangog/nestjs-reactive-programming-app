@@ -30,7 +30,7 @@
 
 ## 📜 Table of Contents
 
-0.  [**Architecture**]()
+0.  [**Architecture**](#architecture)
 1.  [**Overview**](#-overview)
 2.  [**Prerequisites**](#-prerequisites)
 3.  [**Getting Started**](#️-getting-started)
