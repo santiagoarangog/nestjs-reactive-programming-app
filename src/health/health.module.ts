@@ -8,23 +8,23 @@ import { HealthV1Controller } from './infrastructure/driving-adapters/http/v1/he
 import { HealthV2Controller } from './infrastructure/driving-adapters/http/v2/health.v2.controller';
 
 @Module({
-    imports: [
-        CacheModule.registerAsync({
-            imports: [ConfigModule],
-            inject: [ConfigService],
-            useFactory: async (configService: ConfigService) => ({
-                ttl: configService.get<number>('CACHE_TTL', 5000),
-                max: configService.get<number>('CACHE_MAX', 10),
-            }),
-        }),
-    ],
-    controllers: [HealthV1Controller, HealthV2Controller],
-    providers: [
-        CheckHealthUseCase,
-        {
-            provide: HealthRepositoryPort,
-            useClass: HealthRepository,
-        },
-    ],
+  imports: [
+    CacheModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        ttl: configService.get<number>('CACHE_TTL', 5000),
+        max: configService.get<number>('CACHE_MAX', 10),
+      }),
+    }),
+  ],
+  controllers: [HealthV1Controller, HealthV2Controller],
+  providers: [
+    CheckHealthUseCase,
+    {
+      provide: HealthRepositoryPort,
+      useClass: HealthRepository,
+    },
+  ],
 })
-export class HealthModule { }
+export class HealthModule {}

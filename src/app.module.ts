@@ -20,7 +20,7 @@ import { HealthModule } from './health/health.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: configService.get<string>('NODE_ENV') === 'dev' ? true : false, 
+        synchronize: configService.get<string>('NODE_ENV') === 'dev' ? true : false,
         extra: {
           ssl: {
             rejectUnauthorized: false, // Solo para desarrollo
@@ -35,4 +35,4 @@ import { HealthModule } from './health/health.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

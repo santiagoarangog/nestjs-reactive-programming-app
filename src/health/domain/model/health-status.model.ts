@@ -1,8 +1,8 @@
 export interface DependencyStatus {
-    status: 'up' | 'down';
+  status: 'up' | 'down';
 }
 
 export interface HealthStatus {
-    database: DependencyStatus;
-    redis: DependencyStatus;
+  database: DependencyStatus;
+  redis: DependencyStatus;
 }
