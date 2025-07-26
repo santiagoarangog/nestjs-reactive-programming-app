@@ -1,98 +1,203 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<!--
+# ------------------------------------------------------------------------------------|
+#                         🚀 README By SANTIAGO ARANGO G 🚀                           #
+# ------------------------------------------------------------------------------------|
+# 🌐 **Website:** [www.santiagoarangog.com](https://www.santiagoarangog.co)           |
+# 📧 **Contact:** [santiago9606@gmail.co](mailto:santiago9606@gmail.com)              |
+# 💼 **Author:** Santiago Arango Gutierrez ~ CEO Softyma                              |
+# 📅 **Date:** Jule 25, 2025                                                          |
+# 🔒 **Copyright:** 2025 Santiago Arango G All rights reserved                        |
+# ------------------------------------------------------------------------------------|
+-->
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<div align="center">
+  <a href="https://nestjs.com/" target="_blank">
+    <img src="https://nestjs.com/img/logo-small.svg" width="100" alt="Nest Logo" />
+    <img src="./docs/softyma-logo.png" width="200" alt="Softyma Logo" />
+  </a>
+  <h1>NestJS - Reactive Programming Archetype</h1>
+  <p>A project archetype for building scalable and robust backend applications with NestJS, leveraging the principles of Reactive Programming.</p>
+</div>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<div align="center">
 
-## Description
+[![Status](https://img.shields.io/badge/status-active-success.svg)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY)
+[![Built with NestJS](https://img.shields.io/badge/built%20with-NestJS-red.svg)](https://nestjs.com)
+[![Pull Requests](https://img.shields.io/badge/Pull%20Requests-welcome-brightgreen.svg)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/pulls)
+[![Proprietary](https://img.shields.io/badge/License-Proprietary-lightgrey.svg)](/LICENSE)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+</div>
 
-## Project setup
+## 📜 Table of Contents
 
-```bash
-$ yarn install
+0.  [**Architecture**](#architecture)
+1.  [**Overview**](#-overview)
+2.  [**Prerequisites**](#-prerequisites)
+3.  [**Getting Started**](#️-getting-started)
+4.  [**Available Scripts**](#-available-scripts)
+5.  [**Testing**](#-testing)
+6.  [**Changelog**](#-changelog)
+7.  [**Author**](#-author)
+
+
+## Architecture
+
+```markdown
+src
+├── 📂 shared/                # Lógica y utilidades compartidas y transversales
+│   ├── 📂 domain/
+│   │   ├── 📄 value-object.ts
+│   │   └── 📄 entity.ts
+│   ├── 📂 infrastructure/
+│   │   ├── 📂 config/
+│   │   ├── 📂 logging/
+│   │   └── 📂 middleware/
+│   └── 📄 shared.module.ts
+│
+├── 📂 products/               # Dominio de negocio: "Productos"
+│   ├── 📂 application/         # Casos de Uso (orquestación)
+│   │   ├── 📂 use-cases/
+│   │   │   ├── 📄 create-product.use-case.ts
+│   │   │   └── 📄 find-product-by-id.use-case.ts
+│   │   └── 📂 ports/           # Puertos de salida (lo que el núcleo necesita del exterior)
+│   │       └── 📄 product.repository.port.ts
+│   │
+│   ├── 📂 domain/              # El núcleo del negocio (agnóstico a la tecnología)
+│   │   ├── 📂 model/
+│   │   │   ├── 📄 product.entity.ts
+│   │   │   └── 📄 product-name.value-object.ts
+│   │   └── 📂 services/
+│   │       └── 📄 product-finder.service.ts
+│   │
+│   ├── 📂 infrastructure/      # Adaptadores (implementaciones concretas)
+│   │   ├── 📂 driving-adapters/ # Adaptadores de entrada (invocan los casos de uso)
+│   │   │   └── 📂 http/
+│   │   │       ├── 📂 dto/
+│   │   │       │   └── 📄 create-product.dto.ts
+│   │   │       └── 📄 products.controller.ts
+│   │   │
+│   │   └── 📂 driven-adapters/  # Adaptadores de salida (implementan los puertos)
+│   │       ├── 📂 typeorm/
+│   │       │   ├── 📄 product.schema.ts
+│   │       │   └── 📄 product.typeorm.repository.ts
+│   │       └── 📂 redis/
+│   │           └── 📄 product.redis.repository.ts
+│   │
+│   └── 📄 products.module.ts    # Módulo de NestJS que une todo
+│
+├── 📂 users/                   # Otro dominio de negocio...
+│   ├── 📂 application/
+│   ├── 📂 domain/
+│   └── 📂 infrastructure/
+│
+├── 📄 app.module.ts
+└── 📄 main.ts
 ```
 
-## Compile and run the project
+## 🚀 Overview
 
-```bash
-# development
-$ yarn run start
+This project serves as a solid foundation (or `archetype`) for server-side application development using **NestJS**. It incorporates industry best practices and is designed to fully leverage **Reactive Programming** through libraries such as [RxJS](https://rxjs.dev/). This allows for the efficient and declarative handling of asynchronous data streams.
 
-# watch mode
-$ yarn run start:dev
+The primary goal is to provide a clean, scalable, and easily maintainable project structure.
 
-# production mode
-$ yarn run start:prod
+<div align="center">
+  <img src="./docs/reactive-programming-schema.gif" alt="Reactive Programming Schema" width="600"/>
+</div>
+
+## ✅ Prerequisites
+
+Ensure you have the following software installed on your system:
+
+-   **Node.js**: `^22.0.0` or higher. Using a version manager like [nvm](https://github.com/nvm-sh/nvm) is highly recommended.
+-   **NPM**: `^10.0.0` or higher (typically bundled with Node.js).
+-   **Operating System**: Linux, macOS, or Windows.
+
+
+## ⚙️ Getting Started
+
+Follow these steps to get the project running in your local environment.
+
+### 1. Clone the Repository
+
+```sh
+git clone [https://github.com/santiagoarangog/nestjs-reactive-programming-app](https://github.com/santiagoarangog/nestjs-reactive-programming-app)
+cd nestjs-reactive-programming-app
 ```
 
-## Run tests
+### 2. Install Dependencies
 
-```bash
-# unit tests
-$ yarn run test
+This command will install all project dependencies, including `rimraf` and other development tools.
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+```sh
+npm install
 ```
 
-## Deployment
+### 3. Configure Environment Variables
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Create a `.env` file in the project root by copying the example file.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+```sh
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Next, modify the `.env` file with your custom configurations (database credentials, API keys, etc.).
 
-## Resources
+### 4. Run the Application
 
-Check out a few resources that may come in handy when working with NestJS:
+Start the server in development mode. The application will automatically reload whenever a change in the source code is detected.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```sh
+npm run start:dev
+```
 
-## Support
+The application will be available at `http://localhost:3000` (or the port you have configured).
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+-----
 
-## Stay in touch
+## 📦 Available Scripts
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Within the `package.json`, you will find several useful scripts:
 
-## License
+  - `npm run start`: Starts the application in production mode.
+  - `npm run start:dev`: Starts the application in development mode with hot-reloading.
+  - `npm run start:debug`: Starts the application in debug mode with hot-reloading.
+  - `npm run build`: Compiles the TypeScript project into JavaScript.
+  - `npm run format`: Formats the entire codebase using Prettier.
+  - `npm run lint`: Lints the code for style and consistency errors using ESLint.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+-----
+
+## 🧪 Testing
+
+This archetype comes pre-configured with [Jest](https://jestjs.io/) for testing.
+
+  - To run all unit and integration tests:
+    ```sh
+    npm run test
+    ```
+  - To run tests in watch mode, which re-runs them on every file change:
+    ```sh
+    npm run test:watch
+    ```
+  - To generate a test coverage report:
+    ```sh
+    npm run test:cov
+    ```
+
+## 📝 Changelog
+
+For detailed information about the changes in each version, please refer to the [CHANGELOG.md](CHANGELOG.md) file.
+
+## 👨‍💻 Author
+
+Developed and maintained with ❤️ by:
+
+**Santiago Arango Gutiérrez**
+
+  - 📧 **Contact:** [santiago9606@gmail.com](mailto:santiago.arango@experimentality.co)
+  - 🌐 **Website:** [santiago-arango-gutierrez](https://www.linkedin.com/in/santiago-arango-gutierrez/)
+  - 💼 **GitHub:** [@santiagoarangog](https://github.com/santiagoarangog)
+
+<div align="center">
+<small>Copyright © 2025 Santiago Arango G. All rights reserved.</small>
+</div>

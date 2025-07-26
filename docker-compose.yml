@@ -1,0 +1,55 @@
+services:
+  # Servicio de la aplicación NestJS
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: nestjs_app
+  #   ports:
+  #     - "${APP_PORT}:${APP_PORT}"
+  #   depends_on:
+  #     - db
+  #     - redis
+      
+  #   # La app NestJS (con @nestjs/config) leerá estas variables
+  #   environment:
+  #     - DB_HOST=${DB_HOST}
+  #     - DB_PORT=${DB_PORT}
+  #     - DB_USERNAME=${DB_USERNAME}
+  #     - DB_PASSWORD=${DB_PASSWORD}
+  #     - DB_DATABASE=${DB_DATABASE}
+  #     - REDIS_URL=redis://${REDIS_HOST}:${REDIS_PORT} # Construimos la URL aquí
+  #     - CACHE_TTL=${CACHE_TTL}
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   command: npm run start:dev
+
+  # Servicio de la base de datos MySQL
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # Servicio de Redis
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mysql_data:
+  redis_data:
