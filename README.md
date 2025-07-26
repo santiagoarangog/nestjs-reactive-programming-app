@@ -94,34 +94,6 @@ src
 └── 📄 main.ts
 ```
 
-/*
- * ESTRUCTURA DE CARPETAS (ARQUITECTURA HEXAGONAL)
- * -----------------------------------------------
- * src/
- * └── health/
- * ├── application/
- * │   ├── ports/
- * │   │   └── health.repository.port.ts  (Puerto de salida)
- * │   └── use-cases/
- * │       └── check-health.use-case.ts   (Caso de uso)
- * │
- * ├── domain/
- * │   └── model/
- * │       └── health-status.model.ts     (Modelo de dominio)
- * │
- * ├── infrastructure/
- * │   ├── driving-adapters/
- * │   │   └── http/
- * │   │       ├── dto/
- * │   │       │   └── health-status.dto.ts
- * │   │       └── health.controller.ts     (Adaptador de entrada)
- * │   └── driven-adapters/
- * │       └── typeorm-redis/
- * │           └── health.repository.ts     (Adaptador de salida)
- * │
- * └── health.module.ts                     (Ensamblador)
- */
-
 ## 🚀 Overview
 
 This project serves as a solid foundation (or `archetype`) for server-side application development using **NestJS**. It incorporates industry best practices and is designed to fully leverage **Reactive Programming** through libraries such as [RxJS](https://rxjs.dev/). This allows for the efficient and declarative handling of asynchronous data streams.
