@@ -30,6 +30,7 @@
 
 ## 📜 Table of Contents
 
+0.  [**Architecture**]()
 1.  [**Overview**](#-overview)
 2.  [**Prerequisites**](#-prerequisites)
 3.  [**Getting Started**](#️-getting-started)
@@ -38,6 +39,88 @@
 6.  [**Changelog**](#-changelog)
 7.  [**Author**](#-author)
 
+
+## Architecture
+
+```markdown
+src
+├── 📂 shared/                # Lógica y utilidades compartidas y transversales
+│   ├── 📂 domain/
+│   │   ├── 📄 value-object.ts
+│   │   └── 📄 entity.ts
+│   ├── 📂 infrastructure/
+│   │   ├── 📂 config/
+│   │   ├── 📂 logging/
+│   │   └── 📂 middleware/
+│   └── 📄 shared.module.ts
+│
+├── 📂 products/               # Dominio de negocio: "Productos"
+│   ├── 📂 application/         # Casos de Uso (orquestación)
+│   │   ├── 📂 use-cases/
+│   │   │   ├── 📄 create-product.use-case.ts
+│   │   │   └── 📄 find-product-by-id.use-case.ts
+│   │   └── 📂 ports/           # Puertos de salida (lo que el núcleo necesita del exterior)
+│   │       └── 📄 product.repository.port.ts
+│   │
+│   ├── 📂 domain/              # El núcleo del negocio (agnóstico a la tecnología)
+│   │   ├── 📂 model/
+│   │   │   ├── 📄 product.entity.ts
+│   │   │   └── 📄 product-name.value-object.ts
+│   │   └── 📂 services/
+│   │       └── 📄 product-finder.service.ts
+│   │
+│   ├── 📂 infrastructure/      # Adaptadores (implementaciones concretas)
+│   │   ├── 📂 driving-adapters/ # Adaptadores de entrada (invocan los casos de uso)
+│   │   │   └── 📂 http/
+│   │   │       ├── 📂 dto/
+│   │   │       │   └── 📄 create-product.dto.ts
+│   │   │       └── 📄 products.controller.ts
+│   │   │
+│   │   └── 📂 driven-adapters/  # Adaptadores de salida (implementan los puertos)
+│   │       ├── 📂 typeorm/
+│   │       │   ├── 📄 product.schema.ts
+│   │       │   └── 📄 product.typeorm.repository.ts
+│   │       └── 📂 redis/
+│   │           └── 📄 product.redis.repository.ts
+│   │
+│   └── 📄 products.module.ts    # Módulo de NestJS que une todo
+│
+├── 📂 users/                   # Otro dominio de negocio...
+│   ├── 📂 application/
+│   ├── 📂 domain/
+│   └── 📂 infrastructure/
+│
+├── 📄 app.module.ts
+└── 📄 main.ts
+```
+
+/*
+ * ESTRUCTURA DE CARPETAS (ARQUITECTURA HEXAGONAL)
+ * -----------------------------------------------
+ * src/
+ * └── health/
+ * ├── application/
+ * │   ├── ports/
+ * │   │   └── health.repository.port.ts  (Puerto de salida)
+ * │   └── use-cases/
+ * │       └── check-health.use-case.ts   (Caso de uso)
+ * │
+ * ├── domain/
+ * │   └── model/
+ * │       └── health-status.model.ts     (Modelo de dominio)
+ * │
+ * ├── infrastructure/
+ * │   ├── driving-adapters/
+ * │   │   └── http/
+ * │   │       ├── dto/
+ * │   │       │   └── health-status.dto.ts
+ * │   │       └── health.controller.ts     (Adaptador de entrada)
+ * │   └── driven-adapters/
+ * │       └── typeorm-redis/
+ * │           └── health.repository.ts     (Adaptador de salida)
+ * │
+ * └── health.module.ts                     (Ensamblador)
+ */
 
 ## 🚀 Overview
 
