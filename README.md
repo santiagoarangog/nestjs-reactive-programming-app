@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------------|
 # 🌐 **Website:** [www.santiagoarangog.com](https://www.santiagoarangog.co)           |
 # 📧 **Contact:** [santiago9606@gmail.co](mailto:santiago9606@gmail.com)              |
-# 💼 **Author:** Santiago Arango Gutierrez                                            |
+# 💼 **Author:** Santiago Arango Gutierrez ~ CEO Softyma                              |
 # 📅 **Date:** Jule 25, 2025                                                          |
 # 🔒 **Copyright:** 2025 Santiago Arango G All rights reserved                        |
 # ------------------------------------------------------------------------------------|
@@ -13,6 +13,7 @@
 <div align="center">
   <a href="https://nestjs.com/" target="_blank">
     <img src="https://nestjs.com/img/logo-small.svg" width="100" alt="Nest Logo" />
+    <img src="./docs/softyma-logo.png" width="200" alt="Softyma Logo" />
   </a>
   <h1>NestJS - Reactive Programming Archetype</h1>
   <p>A project archetype for building scalable and robust backend applications with NestJS, leveraging the principles of Reactive Programming.</p>
